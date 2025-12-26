@@ -1,0 +1,183 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 255, 255, 255;
+  --background-end-rgb: 250, 250, 250;
+}
+
+.dark {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 24, 24, 27;
+  --background-end-rgb: 39, 39, 42;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+    to bottom,
+    rgb(var(--background-start-rgb)),
+    rgb(var(--background-end-rgb))
+  );
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-playfair), Georgia, serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d4d4d8;
+  border-radius: 4px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #52525b;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a1a1aa;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #71717a;
+}
+
+/* Typing indicator animation */
+.typing-dot {
+  animation: typingDot 1.4s infinite;
+}
+
+.typing-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes typingDot {
+  0%, 60%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  30% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+/* Streaming cursor */
+.streaming-cursor::after {
+  content: '▌';
+  animation: blink 0.8s infinite;
+  color: #3b82f6;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* PDF viewer styles */
+.react-pdf__Page {
+  margin-bottom: 1rem;
+}
+
+.react-pdf__Page__canvas {
+  margin: 0 auto;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border-radius: 1rem;
+}
+
+/* Citation badge styles */
+.citation-badge {
+  @apply inline-flex items-center justify-center w-6 h-6 text-xs font-bold 
+         bg-black text-white rounded-lg cursor-pointer 
+         hover:bg-gray-700 transition-colors mx-0.5;
+}
+
+.dark .citation-badge {
+  @apply bg-white text-black hover:bg-gray-200;
+}
+
+/* Tool call indicator */
+.tool-call-indicator {
+  @apply flex items-center gap-2 px-4 py-2 rounded-2xl text-sm font-medium
+         bg-gray-100 text-black border-2 border-black animate-fade-in;
+}
+
+.dark .tool-call-indicator {
+  @apply bg-surface-800 text-surface-300 border-surface-600;
+}
+
+/* Source card */
+.source-card {
+  @apply flex flex-col p-3 rounded-2xl border-2 border-black 
+         bg-white hover:bg-gray-50 cursor-pointer
+         transition-all duration-200 hover:shadow-md;
+}
+
+.dark .source-card {
+  @apply bg-surface-800 border-surface-600 hover:bg-surface-700;
+}
+
+/* Generative UI components */
+.gen-ui-component {
+  @apply rounded-2xl border-2 border-black bg-white p-4 
+         shadow-sm animate-fade-in overflow-hidden;
+}
+
+.dark .gen-ui-component {
+  @apply bg-surface-800 border-surface-600;
+}
+
+/* PDF highlight */
+.pdf-highlight {
+  background-color: rgba(59, 130, 246, 0.3);
+  border-radius: 2px;
+}
+
+/* Split view layout */
+.split-view-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  transition: grid-template-columns 0.4s ease-out;
+}
+
+@media (min-width: 1024px) {
+  .split-view-container.with-pdf {
+    grid-template-columns: 60% 40%;
+  }
+}
+
+/* Message bubble */
+.message-bubble {
+  @apply max-w-3xl mx-auto;
+}
+
+.user-message {
+  @apply bg-primary-500 text-white rounded-2xl rounded-br-md px-4 py-3;
+}
+
+.assistant-message {
+  @apply bg-white rounded-2xl rounded-bl-md px-4 py-3 shadow-sm border border-surface-100;
+}
+
+.dark .assistant-message {
+  @apply bg-surface-800 border-surface-700;
+}
